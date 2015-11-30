@@ -7,7 +7,13 @@ var ConfigStore = Reflux.createStore({
     listenables: ConfigActions,
 
     loadConfig() {
-        request.get('/config')
+        var appName = location.pathname.substr(1),
+            configUrl = "/config";
+
+        if (appName !== "") {
+            configUrl = "/config/"+appName;
+        }
+        request.get(configUrl)
             .end((err, res) => {
                 var config = res.body;
 

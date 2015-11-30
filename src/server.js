@@ -35,6 +35,26 @@ module.exports = function (mozaik, app) {
         res.send(_.omit(mozaik.config, 'api'));
     });
 
+    app.get('/config/:id', function(req, res) {
+        var config = require('../../../configs/' + req.params.id + '/default');
+        res.send(_.omit(config, "api"));
+    });
+
+    app.get('/config/:id/:env', function(req, res) {
+        var config = require('../../../configs/' + req.params.id + '/' + req.params.env);
+        res.send(_.omit(config, "api"));
+    });
+
+
+    app.get('*', function(req,res){
+        console.log(mozaik.config.assetsBaseUrl);
+        res.render('index', {
+            env:           config.env,
+            appTitle:      mozaik.config.appTitle,
+            assetsBaseUrl: "/"
+        });
+    });
+
     var server = app.listen(config.port, function () {
         mozaik.logger.info(chalk.yellow('Mozaïk server listening at http://' + config.host + ':' + config.port));
     });
