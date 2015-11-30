@@ -49,7 +49,7 @@ module.exports = function (mozaik, app) {
     app.get('*', function(req,res){
         console.log(mozaik.config.assetsBaseUrl);
         res.render('index', {
-            env:           config.env,
+            env:           mozaik.config.env,
             appTitle:      mozaik.config.appTitle,
             assetsBaseUrl: "/"
         });
