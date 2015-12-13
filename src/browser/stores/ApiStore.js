@@ -16,7 +16,7 @@ var ApiStore = Reflux.createStore({
             proto = 'wss';
         }
 
-        ws = new WebSocket(`${ proto }://${ window.document.location.host }`);
+        ws = new WebSocket(`${ proto }:qboinventorydashboard.corp.intuit.net`);
         ws.onmessage = event => {
             ApiStore.trigger(JSON.parse(event.data));
         };
