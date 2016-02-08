@@ -106,7 +106,7 @@ class Bus {
             this._mozaik.logger.info(`Setting timer for "${ requestId }"`);
             this.subscriptions[requestId].timer = setInterval(() => {
                 this.processApiCall(requestId, callFn, request.params);
-            }, 10000);
+            }, 120000);
         }
 
         // avoid adding a client for the same API call twice
